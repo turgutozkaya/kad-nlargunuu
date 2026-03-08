@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>🌸 Kadınlar Günün Kutlu Olsun</title>
+<style>
+body{
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+font-family:Arial;
+text-align:center;
+color:white;
+overflow:hidden;
+background:linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+background-size:800% 800%;
+animation:bg 15s ease infinite;
+}
+@keyframes bg{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+h1{font-size:40px;margin-bottom:20px;}
+p{font-size:25px;max-width:600px;margin-top:20px;}
+button{padding:15px 30px;font-size:18px;border:none;border-radius:30px;cursor:pointer;background:white;color:black;margin-top:15px;}
+.heart{position:absolute;font-size:25px;animation:fall 6s linear infinite;}
+@keyframes fall{
+0%{transform:translateY(-10vh);opacity:1;}
+100%{transform:translateY(110vh);opacity:0;}
+}
+#mesaj{font-size:35px;max-width:700px;}
+</style>
+</head>
+<body>
+
+<h1 id="mesaj">Bir sürpriz seni bekliyor 🎁</h1>
+<p id="ozel"></p>
+<button onclick="baslat()">Sürprizi Aç</button>
+
+<!-- Telifsiz aşk şarkısı -->
+<audio id="muzik" autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+  Tarayıcınız audio desteklemiyor.
+</audio>
+
+<script>
+let muzik=document.getElementById("muzik");
+
+function yazdir(text,element){
+let i=0;
+let speed=40;
+function type(){
+if(i<text.length){
+element.innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,speed);
+}
+}
+type();
+}
+
+function kalp(){
+let heart=document.createElement("div");
+heart.classList.add("heart");
+let semboller=["❤️","💖","💗","💘","🌸"];
+heart.innerHTML=semboller[Math.floor(Math.random()*semboller.length)];
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*30)+"px";
+document.body.appendChild(heart);
+setTimeout(()=>{heart.remove()},6000);
+}
+
+function baslat(){
+let isim=prompt("İsmini yaz 🌸");
+document.getElementById("mesaj").innerHTML="";
+let mesaj=`🌸 Kadınlar Günün Kutlu Olsun ${isim}!`;
+yazdir(mesaj,document.getElementById("mesaj"));
+
+setInterval(kalp,300);
+
+document.getElementById("ozel").innerHTML=
+"Dünyayı senin gibi kadınlar güzelleştiriyor! 💪✨";
+}
+</script>
+
+</body>
+</html>
